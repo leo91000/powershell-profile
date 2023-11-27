@@ -54,11 +54,16 @@ function Volta-PinNodeVersionRecursive {
     }
 }
 
+function Ssh-CopyId([string]$IPAddressOrFQDN) {
+    type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh $IPAddressOrFQDN "cat >> .ssh/authorized_keys"
+}
+
 # Alias definitions
 Set-Alias -Name rmrfall -Value Remove-RecursiveAll
 Set-Alias -Name rmrf -Value Remove-Recursive
 Set-Alias -Name pkill -Value Kill-ProcessByName
 Set-Alias -Name vprn -Value Volta-PinNodeVersionRecursive
+Set-Alias -Name ssh-copy-id -Value Ssh-CopyId
 
 
 function grt { cd (git rev-parse --show-toplevel) }
