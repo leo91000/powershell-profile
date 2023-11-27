@@ -33,6 +33,7 @@ function Kill-ProcessByName {
 
 function Volta-PinNodeVersionRecursive {
     param(
+        [Parameter(Mandatory=$true)]
         [string]$nodeVersionArg
     )
 
@@ -54,7 +55,12 @@ function Volta-PinNodeVersionRecursive {
     }
 }
 
-function Ssh-CopyId([string]$IPAddressOrFQDN) {
+function Ssh-CopyId {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$IPAddressOrFQDN
+    )
+    
     type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh $IPAddressOrFQDN "cat >> .ssh/authorized_keys"
 }
 
